@@ -32,7 +32,7 @@ int usedInBox(int sudoku[N][N], int boxStartRow, int boxStartCol, int num){
 int isSafe(int sudoku[N][N], int row, int col, int num){
     return !usedInRow(sudoku, row, num)
     && !usedInCol(sudoku, col, num)
-    && !usedInBox(sudoku, row - (row%3), col-(col%3), num);
+    && !usedInBox(sudoku, row-(row%3), col-(col%3), num);
 }
 
 int solveSudoku(int sudoku[N][N]){
@@ -43,7 +43,6 @@ int solveSudoku(int sudoku[N][N]){
                 for(int num=1;num<=9;num++){
                     if(isSafe(sudoku, row, col, num)){
                         sudoku[row][col]=num;
-
                             if (solveSudoku(sudoku))
                             return 1;
 
@@ -84,4 +83,7 @@ void main(){
     }
     if(solveSudoku(sudoku))
     printSudoku(sudoku);
+	
+    else
+    printf("No solution");
 }
